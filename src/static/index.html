@@ -8,8 +8,15 @@
   </head>
   <body>
     <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+      <div class="header-bar">
+        <div>
+          <h1>Mergington High School</h1>
+          <h2>Extracurricular Activities</h2>
+        </div>
+        <button id="user-menu-button" class="icon-button" type="button" aria-label="Teacher account">
+          <span aria-hidden="true">👤</span>
+        </button>
+      </div>
     </header>
 
     <main>
@@ -22,7 +29,10 @@
       </section>
 
       <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+        <h3>Teacher Controls</h3>
+        <p id="admin-status" class="info-panel">
+          Teacher login is required to register or unregister students.
+        </p>
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
@@ -40,6 +50,35 @@
         <div id="message" class="hidden"></div>
       </section>
     </main>
+
+    <div id="auth-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="auth-title">Teacher Account</h3>
+          <button id="close-auth-modal" class="icon-button" type="button" aria-label="Close login window">✕</button>
+        </div>
+        <div id="auth-panel-logged-out">
+          <p class="modal-copy">Log in to manage registrations.</p>
+          <button id="open-login-form" type="button">Login</button>
+          <form id="login-form" class="hidden auth-form">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" autocomplete="username" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" autocomplete="current-password" />
+            </div>
+            <button type="submit">Sign In</button>
+          </form>
+        </div>
+        <div id="auth-panel-logged-in" class="hidden">
+          <p id="logged-in-user" class="modal-copy"></p>
+          <button id="logout-button" type="button">Log Out</button>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <p>&copy; 2026 Mergington High School</p>
