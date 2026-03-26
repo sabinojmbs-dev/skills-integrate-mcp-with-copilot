@@ -5,7 +5,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Teachers can sign in to register or unregister students for activities
+- Students can still view activities and current participants without signing in
 
 ## Getting Started
 
@@ -30,7 +31,11 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| GET    | `/auth/status`                                                    | Get the current teacher authentication status                       |
+| POST   | `/auth/login`                                                     | Log in as a teacher                                                 |
+| POST   | `/auth/logout`                                                    | Log out the current teacher session                                 |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Register a student for an activity as a teacher                     |
+| DELETE | `/activities/{activity_name}/unregister?email=student@...`        | Remove a student from an activity as a teacher                      |
 
 ## Data Model
 
@@ -47,4 +52,6 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+All activity data is stored in memory, which means registrations will reset when the server restarts.
+
+Teacher usernames and passwords are stored in `teachers.json` for this demo.
